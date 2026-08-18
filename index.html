@@ -115,22 +115,6 @@
   .proc h4{margin-bottom:7px}
   .proc p{color:var(--muted);font-size:.86rem}
 
-  /* ---------- WORK ---------- */
-  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .work{border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--surface);transition:.25s}
-  .work:hover{transform:translateY(-5px);border-color:rgba(34,211,238,.4)}
-  .work-cover{height:170px;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;color:rgba(255,255,255,.9)}
-  .wc-1{background:linear-gradient(135deg,#4F46E5,#7C3AED)}
-  .wc-2{background:linear-gradient(135deg,#0891B2,#22D3EE)}
-  .wc-3{background:linear-gradient(135deg,#DB2777,#F472B6)}
-  .wc-4{background:linear-gradient(135deg,#059669,#34D399)}
-  .wc-5{background:linear-gradient(135deg,#D97706,#FBBF24)}
-  .wc-6{background:linear-gradient(135deg,#4338CA,#6366F1)}
-  .work-body{padding:18px 20px 22px}
-  .work-body .tag{font-size:.72rem;color:var(--cyan);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
-  .work-body h4{font-size:1.02rem;margin:6px 0 6px}
-  .work-body p{color:var(--muted);font-size:.85rem}
-
   /* ---------- PRICING ---------- */
   #pricing{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
   .price-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:860px;margin:0 auto}
@@ -199,7 +183,7 @@
   /* ---------- RESPONSIVE ---------- */
   @media(max-width:960px){
     .hero-grid{grid-template-columns:1fr;gap:40px}
-    .svc-grid,.work-grid,.tst-grid{grid-template-columns:repeat(2,1fr)}
+    .svc-grid,.tst-grid{grid-template-columns:repeat(2,1fr)}
     .proc-grid{grid-template-columns:repeat(2,1fr)}
     .why-grid,.contact-grid{grid-template-columns:1fr}
     .foot-grid{grid-template-columns:repeat(2,1fr)}
@@ -207,7 +191,7 @@
     .burger{display:block}
   }
   @media(max-width:600px){
-    .svc-grid,.work-grid,.tst-grid,.price-grid,.proc-grid{grid-template-columns:1fr}
+    .svc-grid,.tst-grid,.price-grid,.proc-grid{grid-template-columns:1fr}
     section{padding:64px 0}
     .row2{grid-template-columns:1fr}
     .stats{gap:24px}
@@ -303,7 +287,6 @@
     <a href="#top" class="logo"><span class="logo-mark">A</span><span>Aurevia<span class="grad-text"> Digital</span></span></a>
     <div class="nav-links">
       <a href="#services">Services</a>
-      <a href="#work">Work</a>
       <a href="#process">Process</a>
       <a href="#pricing">Pricing</a>
       <a href="#contact">Contact</a>
@@ -315,7 +298,6 @@
   </div>
   <div class="mobile-menu" id="mobileMenu">
     <a href="#services">Services</a>
-    <a href="#work">Work</a>
     <a href="#process">Process</a>
     <a href="#pricing">Pricing</a>
     <a href="#contact">Contact</a>
@@ -333,7 +315,7 @@
       <p class="sub">We design fast, modern, conversion-focused websites for Australian small businesses — from clean single pages to full multi-page sites, with SEO and support included.</p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-primary">Start Your Project →</a>
-        <a href="#work" class="btn btn-ghost">See Our Work</a>
+        <a href="#services" class="btn btn-ghost">Explore Services</a>
       </div>
       <div class="stats">
         <div class="stat"><b>50+</b><span>Projects delivered</span></div>
@@ -427,25 +409,6 @@
       <div class="proc"><div class="step">2</div><h4>Design</h4><p>You get a draft design. We refine it together until it feels right — revisions included.</p></div>
       <div class="proc"><div class="step">3</div><h4>Build</h4><p>We develop the site, set up your domain, SSL, analytics and everything behind the scenes.</p></div>
       <div class="proc"><div class="step">4</div><h4>Launch</h4><p>You review, we go live, and you get 30 days of free fixes after launch.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- WORK -->
-<section id="work">
-  <div class="container">
-    <div class="sec-head">
-      <div class="kicker">Our work</div>
-      <h2>Recent projects</h2>
-      <p>A few examples of what we build for Australian businesses.</p>
-    </div>
-    <div class="work-grid">
-      <div class="work"><div class="work-cover wc-1">GSCF &nbsp;·&nbsp; Accounting</div><div class="work-body"><span class="tag">Business website</span><h4>GSCF Chartered Accountants</h4><p>Professional multi-service site with enquiry form and Google Maps.</p></div></div>
-      <div class="work"><div class="work-cover wc-2">TechnicsCorp &nbsp;·&nbsp; Trades</div><div class="work-body"><span class="tag">Business website</span><h4>TechnicsCorp</h4><p>Clean, trust-building site for a technical services company.</p></div></div>
-      <div class="work"><div class="work-cover wc-3">Your Business</div><div class="work-body"><span class="tag">Coming soon</span><h4>Your project here</h4><p>Be our next success story. Tell us about your business.</p></div></div>
-      <div class="work"><div class="work-cover wc-4">4BlackDM &nbsp;·&nbsp; Food</div><div class="work-body"><span class="tag">Business website</span><h4>4BlackDM</h4><p>Appetising, mobile-first site built for a food business.</p></div></div>
-      <div class="work"><div class="work-cover wc-5">Your Business</div><div class="work-body"><span class="tag">Coming soon</span><h4>Your project here</h4><p>Be our next success story. Tell us about your business.</p></div></div>
-      <div class="work"><div class="work-cover wc-6">Your Business</div><div class="work-body"><span class="tag">Coming soon</span><h4>Your project here</h4><p>Be our next success story. Tell us about your business.</p></div></div>
     </div>
   </div>
 </section>
@@ -607,7 +570,6 @@
       <div>
         <h5>Explore</h5>
         <a href="#services">Services</a>
-        <a href="#work">Our Work</a>
         <a href="#process">Process</a>
         <a href="#pricing">Pricing</a>
       </div>
