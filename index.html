@@ -219,43 +219,47 @@
   .burst{position:absolute;inset:-20%;z-index:4;background:radial-gradient(circle at 50% 50%,rgba(255,215,130,.95) 0%,rgba(212,175,55,.45) 30%,transparent 62%);opacity:0;pointer-events:none;transform:scale(.2)}
   .burst.on{animation:burst .8s ease-out forwards}
   @keyframes burst{0%{opacity:0;transform:scale(.2)}25%{opacity:1}100%{opacity:0;transform:scale(1.6)}}
-  .book-scene{position:relative;perspective:1600px;z-index:2;animation:bookDrop 1.1s cubic-bezier(.22,1.1,.3,1) both}
+  .book-scene{position:relative;perspective:1800px;z-index:2;animation:bookDrop 1.1s cubic-bezier(.22,1.1,.3,1) both}
   @keyframes bookDrop{0%{opacity:0;transform:translateY(-150px) scale(.9)}55%{opacity:1;transform:translateY(16px) scale(1)}75%{transform:translateY(-7px)}88%{transform:translateY(3px)}100%{transform:translateY(0) scale(1)}}
-  .book-scene.zoom{animation:none;transform:scale(1.32) translateY(-16px);transition:transform .6s cubic-bezier(.5,.08,.2,1)}
-  .dust-ring{position:absolute;left:50%;bottom:-52px;width:420px;height:64px;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(212,175,55,.42),transparent 62%);opacity:0;z-index:1;pointer-events:none;animation:dustRing 1.3s ease-out .95s both}
+  .book-scene.zoom{animation:none;transform:scale(1.38) translateY(-18px);transition:transform .65s cubic-bezier(.5,.08,.2,1)}
+  .dust-ring{position:absolute;left:50%;bottom:-64px;width:520px;height:70px;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(212,175,55,.42),transparent 62%);opacity:0;z-index:1;pointer-events:none;animation:dustRing 1.3s ease-out .95s both}
   @keyframes dustRing{0%{opacity:0;transform:translateX(-50%) scaleX(.2)}25%{opacity:1}100%{opacity:0;transform:translateX(-50%) scaleX(1.25)}}
-  .book{position:relative;width:min(360px,70vw);height:min(530px,102vw);transform-style:preserve-3d;animation:float 7s ease-in-out infinite}
-  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-  .book-face{position:absolute;inset:0;transform:translateZ(1px);background:linear-gradient(115deg,#16161c 0%,#0a0a0e 45%,#181820 100%);border:1px solid rgba(212,175,55,.55);border-radius:4px 16px 16px 4px;box-shadow:0 46px 100px rgba(0,0,0,.8),inset 0 0 70px rgba(0,0,0,.95);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+  .book{position:relative;width:min(480px,84vw);height:min(690px,120vw);transform-style:preserve-3d;transform:rotateX(10deg) translateY(70px);animation:float 7s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(70px) rotateX(10deg)}50%{transform:translateY(60px) rotateX(10deg)}}
+  .book-face{position:absolute;inset:0;transform:translateZ(1px);background:radial-gradient(130% 90% at 28% 0%,rgba(255,255,255,.08),transparent 46%),linear-gradient(115deg,#1b1b24 0%,#0b0b10 50%,#1a1a22 100%);border:1px solid rgba(212,175,55,.6);border-radius:6px 18px 18px 6px;box-shadow:0 60px 120px rgba(0,0,0,.85),inset 0 0 80px rgba(0,0,0,.95),inset 3px 3px 10px rgba(255,255,255,.05),inset -5px -5px 16px rgba(0,0,0,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+  .frame{position:absolute;inset:18px;border:1px solid rgba(212,175,55,.32);border-radius:4px 14px 14px 4px;pointer-events:none;z-index:1}
+  .frame::before,.frame::after{content:'';position:absolute;width:16px;height:16px;border:2px solid rgba(212,175,55,.7)}
+  .frame::before{top:-2px;left:-2px;border-right:none;border-bottom:none;border-radius:4px 0 0 0}
+  .frame::after{bottom:-2px;right:-2px;border-left:none;border-top:none;border-radius:0 0 4px 0}
+  .pages-edge{position:absolute;top:8px;right:-15px;bottom:8px;width:15px;border-radius:0 9px 9px 0;background:repeating-linear-gradient(180deg,#e9dab0 0px,#c9b583 2px,#e9dab0 3px);box-shadow:0 6px 16px rgba(0,0,0,.55);transform:translateZ(.5px)}
   .book-face::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:linear-gradient(180deg,transparent,rgba(212,175,55,.5) 30%,rgba(212,175,55,.95) 50%,rgba(212,175,55,.5) 70%,transparent);box-shadow:0 0 16px rgba(212,175,55,.55);z-index:1}
   .book-face::after{content:'';position:absolute;inset:0;background:linear-gradient(155deg,rgba(255,255,255,.08),transparent 38%)}
   .engrave-title{position:relative;z-index:2;text-align:center;font-family:'Cinzel','Times New Roman',serif;transition:opacity .45s ease,filter .45s ease;padding:0 10px}
   .engrave-title.fade{opacity:0;filter:blur(7px)}
   .engrave-title .l1,.engrave-title .l2{display:block;white-space:nowrap}
-  .engrave-title .l1{font-size:clamp(2rem,9vw,3.2rem);font-weight:700;letter-spacing:.16em;text-indent:.16em}
-  .engrave-title .l2{font-size:clamp(1rem,4.4vw,1.35rem);font-weight:600;letter-spacing:.6em;text-indent:.6em;margin-top:8px}
-  .engrave-title .l3{display:block;margin-top:20px;font-family:'Inter',sans-serif;font-size:clamp(.5rem,2vw,.64rem);letter-spacing:.5em;text-indent:.5em;color:rgba(212,175,55,.78);font-weight:500}
-  .engrave-title .ch{display:inline-block;background:linear-gradient(180deg,#fdf0c2 0%,#efcf74 26%,#c89b2c 52%,#9a7418 70%,#f2dc95 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 4px rgba(0,0,0,.95)) drop-shadow(0 0 3px rgba(212,175,55,.4));opacity:0}
+  .engrave-title .l1{font-size:clamp(2.7rem,10vw,4rem);font-weight:700;letter-spacing:.16em;text-indent:.16em}
+  .engrave-title .l2{font-size:clamp(1.25rem,4.6vw,1.6rem);font-weight:600;letter-spacing:.6em;text-indent:.6em;margin-top:10px}
+  .engrave-title .l3{display:block;margin-top:24px;font-family:'Inter',sans-serif;font-size:clamp(.55rem,2vw,.7rem);letter-spacing:.5em;text-indent:.5em;color:rgba(212,175,55,.82);font-weight:500}
+  .engrave-title .ch{display:inline-block;background:linear-gradient(180deg,#fdf3c6 0%,#f0d072 22%,#c9982c 48%,#8a6614 66%,#d9b64e 86%,#f8e9ab 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:.5px rgba(126,92,18,.5);filter:drop-shadow(0 2px 2px rgba(0,0,0,.95)) drop-shadow(0 0 7px rgba(212,175,55,.35)) drop-shadow(-1px -1px 1px rgba(255,246,205,.45));opacity:0}
   .engrave-title .ch.on{animation:engrave .55s ease forwards}
-  @keyframes engrave{0%{opacity:0;transform:scale(2.1);filter:drop-shadow(0 0 34px rgba(255,228,155,1)) drop-shadow(0 3px 4px rgba(0,0,0,.95))}55%{opacity:1;transform:scale(1.03);filter:drop-shadow(0 0 16px rgba(255,228,155,.8)) drop-shadow(0 3px 4px rgba(0,0,0,.95))}100%{opacity:1;transform:scale(1);filter:drop-shadow(0 3px 4px rgba(0,0,0,.95)) drop-shadow(0 0 3px rgba(212,175,55,.4))}}
+  @keyframes engrave{0%{opacity:0;transform:scale(2.1);filter:drop-shadow(0 0 36px rgba(255,228,155,1)) drop-shadow(0 2px 2px rgba(0,0,0,.95))}55%{opacity:1;transform:scale(1.03);filter:drop-shadow(0 0 18px rgba(255,228,155,.85)) drop-shadow(0 2px 2px rgba(0,0,0,.95))}100%{opacity:1;transform:scale(1);filter:drop-shadow(0 2px 2px rgba(0,0,0,.95)) drop-shadow(0 0 7px rgba(212,175,55,.35)) drop-shadow(-1px -1px 1px rgba(255,246,205,.45))}}
   /* gold light sweep across engraved title */
   .engrave-title .shine-wrap{position:absolute;inset:0;overflow:hidden;pointer-events:none}
   .engrave-title .shine{position:absolute;top:-20%;bottom:-20%;width:45%;left:0;background:linear-gradient(105deg,transparent 20%,rgba(255,244,200,.32) 50%,transparent 80%);transform:translateX(-130%)}
   .engrave-title.shined .shine{animation:shineSweep 1.15s ease .15s forwards}
   @keyframes shineSweep{to{transform:translateX(330%)}}
   /* flipping pages */
-  .page{position:absolute;inset:0;--z:2px;background:linear-gradient(90deg,#f6e9cb 0%,#efdfb4 55%,#e6d19d 100%);border:1px solid rgba(212,175,55,.4);box-shadow:0 6px 20px rgba(0,0,0,.45);transform-origin:left center;opacity:0}
-  .page-2{--z:4px}.page-3{--z:6px}
-  .book.open .page{animation:pageFlip .85s cubic-bezier(.5,.1,.32,1) forwards}
-  .book.open .page-2{animation-delay:.16s}
-  .book.open .page-3{animation-delay:.32s}
-  @keyframes pageFlip{0%{opacity:0;transform:rotateY(0deg) translateZ(var(--z))}12%{opacity:1}55%{opacity:1}100%{opacity:0;transform:rotateY(-165deg) translateZ(var(--z))}}
+  .page{position:absolute;inset:0;--z:3px;background:linear-gradient(90deg,#f8ecd0 0%,#f0e0b6 55%,#e8d3a0 100%);border:1px solid rgba(212,175,55,.45);box-shadow:0 8px 24px rgba(0,0,0,.5);transform-origin:left center;opacity:0}
+  .page-2{--z:6px}
+  .book.open .page{animation:pageFlip .75s cubic-bezier(.5,.1,.32,1) forwards}
+  .book.open .page-2{animation-delay:.15s}
+  @keyframes pageFlip{0%{opacity:0;transform:rotateY(0deg) translateZ(var(--z))}10%{opacity:1}42%{opacity:1}58%{opacity:0}100%{opacity:0;transform:rotateY(-162deg) translateZ(var(--z))}}
   /* opening covers with gold interior */
-  .half{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(180deg,#f7e7ab 0%,#e3bc55 28%,#a87f1e 58%,#d9b44c 85%,#f0d98c 100%);box-shadow:inset 0 0 34px rgba(88,60,0,.55);transition:transform 1.15s cubic-bezier(.5,.05,.28,1)}
-  .half-l{left:0;transform-origin:right center;border-radius:4px 0 0 4px}
-  .half-r{right:0;transform-origin:left center;border-radius:0 16px 16px 0}
-  .book.cover-open .half-l{transform:rotateY(160deg)}
-  .book.cover-open .half-r{transform:rotateY(-160deg)}
+  .half{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(180deg,#f8e8ac 0%,#e4bd56 26%,#a87f1e 56%,#dcb74e 84%,#f1dc8e 100%);border:1px solid rgba(212,175,55,.6);box-shadow:inset 0 0 40px rgba(88,60,0,.6),inset 2px 2px 8px rgba(255,255,255,.12);transition:transform 1.2s cubic-bezier(.45,.05,.25,1)}
+  .half-l{left:0;transform-origin:left center;border-radius:6px 0 0 6px}
+  .half-r{right:0;transform-origin:right center;border-radius:0 18px 18px 0}
+  .book.cover-open .half-l{transform:rotateY(-150deg)}
+  .book.cover-open .half-r{transform:rotateY(150deg)}
   .skip-intro{position:fixed;top:18px;right:22px;z-index:5;background:none;border:1px solid rgba(212,175,55,.35);color:rgba(212,175,55,.85);font-size:.78rem;letter-spacing:.12em;padding:8px 16px;border-radius:999px;cursor:pointer;transition:.25s;font-family:'Inter',sans-serif}
   .skip-intro:hover{background:rgba(212,175,55,.12);border-color:rgba(212,175,55,.7)}
   @media(max-width:600px){.skip-intro{font-size:.7rem;padding:6px 12px}}
@@ -271,6 +275,7 @@
     <div class="dust-ring"></div>
     <div class="book" id="introBook">
       <div class="book-face">
+        <span class="frame"></span>
         <div class="engrave-title" id="introTitle">
           <span class="l1" data-text="AUREVIA">AUREVIA</span>
           <span class="l2" data-text="DIGITAL">DIGITAL</span>
@@ -278,9 +283,9 @@
           <span class="shine-wrap"><span class="shine"></span></span>
         </div>
       </div>
+      <div class="pages-edge"></div>
       <div class="page page-1"></div>
       <div class="page page-2"></div>
-      <div class="page page-3"></div>
       <div class="half half-l"></div>
       <div class="half half-r"></div>
     </div>
@@ -685,7 +690,7 @@
       raf=requestAnimationFrame(frame);
     }
     function dustBurst(){
-      for(var i=0;i<150;i++)bursts.push({x:W/2+(Math.random()-.5)*W*.12,y:H*.42+(Math.random()-.5)*H*.3,vx:(Math.random()-.5)*13,vy:(Math.random()-.35)*9,r:(Math.random()*2.2+.6)*devicePixelRatio,a:Math.random()*.7+.3,age:0});
+      for(var i=0;i<150;i++)bursts.push({x:W/2+(Math.random()-.5)*W*.12,y:H*.45+(Math.random()-.5)*H*.3,vx:(Math.random()-.5)*13,vy:(Math.random()-.35)*9,r:(Math.random()*2.2+.6)*devicePixelRatio,a:Math.random()*.7+.3,age:0});
     }
     frame();
 
@@ -705,11 +710,11 @@
     setTimeout(function(){lines.forEach(function(l){l.querySelectorAll('.ch').forEach(function(c){c.classList.add('on');});});},150);
     setTimeout(function(){title.classList.add('shined');},E+650);   // gold light sweep
     setTimeout(function(){title.classList.add('fade');},E+950);     // title dissolves
-    setTimeout(function(){book.classList.add('open');},E+1200);     // pages flip one by one
-    setTimeout(function(){book.classList.add('cover-open');},E+1560);// covers open, gold interior
+    setTimeout(function(){book.classList.add('open');},E+1150);     // pages flip
+    setTimeout(function(){book.classList.add('cover-open');},E+1550);// covers open outward, gold interior
     setTimeout(function(){dustBurst();},E+2400);                    // gold particle explosion
-    setTimeout(function(){burst.classList.add('on');scene.classList.add('zoom');},E+2500); // light bloom + camera push-in
-    setTimeout(finish,E+2700);
+    setTimeout(function(){burst.classList.add('on');scene.classList.add('zoom');},E+2480); // light bloom + camera push-in
+    setTimeout(finish,E+2650);
     skip.addEventListener('click',finish);
   })();
 </script>
