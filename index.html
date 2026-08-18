@@ -140,6 +140,7 @@
 
   /* ---------- TESTIMONIALS ---------- */
   .tst-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;max-width:880px;margin:0 auto}
+  .tst-grid:has(.tst:only-child){max-width:680px}
   .tst{border:1px solid var(--border);border-radius:6px;padding:32px 30px 26px;background:#101015;position:relative}
   .tst::before{content:'“';position:absolute;top:4px;right:26px;font-family:'Playfair Display',serif;font-size:4.2rem;line-height:1;color:var(--gold);opacity:.3}
   .tst .stars{color:var(--gold);letter-spacing:3px;margin-bottom:16px;font-size:.85rem}
@@ -403,11 +404,6 @@
         <div class="stars">★★★★★</div>
         <p>"Straightforward from start to finish. The site went live when they said it would, looks great, and we've already had enquiries come through the contact form."</p>
         <div class="who"><span class="av">J</span><div><b>Jerry G.</b><span>GSCF Chartered Accountants</span></div></div>
-      </div>
-      <div class="tst">
-        <div class="stars">★★★★★</div>
-        <p>"They explained everything in plain English and didn't try to upsell us. The invoice matched the quote exactly, which is rare these days."</p>
-        <div class="who"><span class="av">C</span><div><b>Chan K.</b><span>TechnicsCorp</span></div></div>
       </div>
     </div>
   </div>
