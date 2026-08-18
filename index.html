@@ -12,7 +12,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0B0F19; --bg2:#0E1420; --surface:rgba(255,255,255,.045);
@@ -210,9 +210,61 @@
     .stats{gap:24px}
     .fb-1{left:-6px}.fb-2{right:-6px}
   }
+
+  /* ---------- INTRO: GOLD BOOK REVEAL ---------- */
+  #intro{position:fixed;inset:0;z-index:9999;background:radial-gradient(120% 120% at 50% 38%,#121218 0%,#060608 55%,#000 100%);display:flex;align-items:center;justify-content:center;transition:opacity .7s ease;overflow:hidden}
+  #intro.hide{opacity:0;pointer-events:none}
+  #intro.gone{display:none}
+  .burst{position:absolute;inset:-20%;background:radial-gradient(circle at 50% 50%,rgba(255,215,130,.95) 0%,rgba(212,175,55,.45) 30%,transparent 62%);opacity:0;pointer-events:none;transform:scale(.2)}
+  .burst.on{animation:burst .8s ease-out forwards}
+  @keyframes burst{0%{opacity:0;transform:scale(.2)}25%{opacity:1}100%{opacity:0;transform:scale(1.6)}}
+  .book-scene{perspective:1600px;animation:bookIn .9s cubic-bezier(.2,.9,.3,1.2) both}
+  @keyframes bookIn{0%{opacity:0;transform:translateY(60px) scale(.86)}100%{opacity:1;transform:translateY(0) scale(1)}}
+  .book{position:relative;width:min(360px,70vw);height:min(530px,102vw);transform-style:preserve-3d;animation:float 7s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .book-face{position:absolute;inset:0;transform:translateZ(1px);background:linear-gradient(115deg,#16161c 0%,#0a0a0e 45%,#181820 100%);border:1px solid rgba(212,175,55,.55);border-radius:4px 16px 16px 4px;box-shadow:0 46px 100px rgba(0,0,0,.8),inset 0 0 70px rgba(0,0,0,.95);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+  .book-face::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:linear-gradient(180deg,transparent,rgba(212,175,55,.5) 30%,rgba(212,175,55,.95) 50%,rgba(212,175,55,.5) 70%,transparent);box-shadow:0 0 16px rgba(212,175,55,.55);z-index:1}
+  .book-face::after{content:'';position:absolute;inset:0;background:linear-gradient(155deg,rgba(255,255,255,.08),transparent 38%)}
+  .engrave-title{position:relative;z-index:2;text-align:center;font-family:'Cinzel','Times New Roman',serif;transition:opacity .45s ease,filter .45s ease;padding:0 10px}
+  .engrave-title.fade{opacity:0;filter:blur(7px)}
+  .engrave-title .l1,.engrave-title .l2{display:block;white-space:nowrap}
+  .engrave-title .l1{font-size:clamp(2rem,9vw,3.2rem);font-weight:700;letter-spacing:.16em;text-indent:.16em}
+  .engrave-title .l2{font-size:clamp(1rem,4.4vw,1.35rem);font-weight:600;letter-spacing:.6em;text-indent:.6em;margin-top:8px}
+  .engrave-title .l3{display:block;margin-top:20px;font-family:'Inter',sans-serif;font-size:clamp(.5rem,2vw,.64rem);letter-spacing:.5em;text-indent:.5em;color:rgba(212,175,55,.78);font-weight:500}
+  .engrave-title .ch{display:inline-block;background:linear-gradient(180deg,#fdf0c2 0%,#efcf74 26%,#c89b2c 52%,#9a7418 70%,#f2dc95 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 4px rgba(0,0,0,.95)) drop-shadow(0 0 3px rgba(212,175,55,.4));opacity:0}
+  .engrave-title .ch.on{animation:engrave .55s ease forwards}
+  @keyframes engrave{0%{opacity:0;transform:scale(1.9);filter:drop-shadow(0 0 30px rgba(255,226,150,1)) drop-shadow(0 3px 4px rgba(0,0,0,.95))}55%{opacity:1;transform:scale(1.02);filter:drop-shadow(0 0 14px rgba(255,226,150,.75)) drop-shadow(0 3px 4px rgba(0,0,0,.95))}100%{opacity:1;transform:scale(1);filter:drop-shadow(0 3px 4px rgba(0,0,0,.95)) drop-shadow(0 0 3px rgba(212,175,55,.4))}}
+  .half{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(180deg,#f7e7ab 0%,#e3bc55 28%,#a87f1e 58%,#d9b44c 85%,#f0d98c 100%);box-shadow:inset 0 0 34px rgba(88,60,0,.55);transition:transform 1.05s cubic-bezier(.55,.06,.3,1)}
+  .half-l{left:0;transform-origin:right center;border-radius:4px 0 0 4px}
+  .half-r{right:0;transform-origin:left center;border-radius:0 16px 16px 0}
+  .book.open .half-l{transform:rotateY(160deg)}
+  .book.open .half-r{transform:rotateY(-160deg)}
+  .skip-intro{position:fixed;top:18px;right:22px;z-index:5;background:none;border:1px solid rgba(212,175,55,.35);color:rgba(212,175,55,.85);font-size:.78rem;letter-spacing:.12em;padding:8px 16px;border-radius:999px;cursor:pointer;transition:.25s;font-family:'Inter',sans-serif}
+  .skip-intro:hover{background:rgba(212,175,55,.12);border-color:rgba(212,175,55,.7)}
+  @media(max-width:600px){.skip-intro{font-size:.7rem;padding:6px 12px}}
 </style>
 </head>
 <body>
+
+<!-- INTRO: GOLD BOOK REVEAL -->
+<div id="intro" role="presentation">
+  <div class="burst" id="introBurst"></div>
+  <div class="book-scene">
+    <div class="book" id="introBook">
+      <div class="book-face">
+        <div class="engrave-title" id="introTitle">
+          <span class="l1" data-text="AUREVIA">AUREVIA</span>
+          <span class="l2" data-text="DIGITAL">DIGITAL</span>
+          <span class="l3">WEB DESIGN · DIGITAL STUDIO</span>
+        </div>
+      </div>
+      <div class="half half-l"></div>
+      <div class="half half-r"></div>
+    </div>
+  </div>
+  <button class="skip-intro" id="skipIntro" type="button">Skip intro →</button>
+</div>
+<noscript><style>#intro{display:none!important}</style></noscript>
 
 <!-- NAV -->
 <nav>
@@ -570,6 +622,38 @@
     const body=encodeURIComponent('Name: '+name+'\nPhone: '+phone+'\nEmail: '+email+'\nBusiness: '+f.business.value+'\nNeed: '+f.service.value+'\nMessage: '+f.message.value);
     f.action='mailto:hello@aureviadigital.com.au?subject='+encodeURIComponent('Website enquiry from '+name)+'&body='+body;
   });
+
+  // ---------- INTRO: gold book reveal ----------
+  (function(){
+    var intro=document.getElementById('intro'),book=document.getElementById('introBook'),
+        burst=document.getElementById('introBurst'),skip=document.getElementById('skipIntro');
+    function finish(){
+      document.documentElement.style.overflow='';
+      intro.classList.add('hide');
+      setTimeout(function(){intro.classList.add('gone');},750);
+    }
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){intro.classList.add('gone');return;}
+    document.documentElement.style.overflow='hidden';
+    // split title into letters
+    var lines=document.querySelectorAll('#intro .engrave-title .l1,#intro .engrave-title .l2');
+    var n=0;
+    lines.forEach(function(line){
+      var text=line.getAttribute('data-text')||line.textContent;
+      line.textContent='';
+      text.split('').forEach(function(ch){
+        var s=document.createElement('span');s.className='ch';s.textContent=ch;
+        s.style.animationDelay=(n*115)+'ms';n++;
+        line.appendChild(s);
+      });
+    });
+    var engraveMs=n*115;
+    setTimeout(function(){lines.forEach(function(l){l.querySelectorAll('.ch').forEach(function(c){c.classList.add('on');});});},150);
+    setTimeout(function(){document.getElementById('introTitle').classList.add('fade');},engraveMs+1000);
+    setTimeout(function(){book.classList.add('open');},engraveMs+1350);
+    setTimeout(function(){burst.classList.add('on');},engraveMs+2200);
+    setTimeout(finish,engraveMs+2450);
+    skip.addEventListener('click',finish);
+  })();
 </script>
 </body>
 </html>
