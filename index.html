@@ -211,15 +211,19 @@
     .fb-1{left:-6px}.fb-2{right:-6px}
   }
 
-  /* ---------- INTRO: GOLD BOOK REVEAL ---------- */
+  /* ---------- INTRO: GOLD MAGIC BOOK REVEAL ---------- */
   #intro{position:fixed;inset:0;z-index:9999;background:radial-gradient(120% 120% at 50% 38%,#121218 0%,#060608 55%,#000 100%);display:flex;align-items:center;justify-content:center;transition:opacity .7s ease;overflow:hidden}
   #intro.hide{opacity:0;pointer-events:none}
   #intro.gone{display:none}
-  .burst{position:absolute;inset:-20%;background:radial-gradient(circle at 50% 50%,rgba(255,215,130,.95) 0%,rgba(212,175,55,.45) 30%,transparent 62%);opacity:0;pointer-events:none;transform:scale(.2)}
+  .gold-dust{position:absolute;inset:0;z-index:3;pointer-events:none}
+  .burst{position:absolute;inset:-20%;z-index:4;background:radial-gradient(circle at 50% 50%,rgba(255,215,130,.95) 0%,rgba(212,175,55,.45) 30%,transparent 62%);opacity:0;pointer-events:none;transform:scale(.2)}
   .burst.on{animation:burst .8s ease-out forwards}
   @keyframes burst{0%{opacity:0;transform:scale(.2)}25%{opacity:1}100%{opacity:0;transform:scale(1.6)}}
-  .book-scene{perspective:1600px;animation:bookIn .9s cubic-bezier(.2,.9,.3,1.2) both}
-  @keyframes bookIn{0%{opacity:0;transform:translateY(60px) scale(.86)}100%{opacity:1;transform:translateY(0) scale(1)}}
+  .book-scene{position:relative;perspective:1600px;z-index:2;animation:bookDrop 1.1s cubic-bezier(.22,1.1,.3,1) both}
+  @keyframes bookDrop{0%{opacity:0;transform:translateY(-150px) scale(.9)}55%{opacity:1;transform:translateY(16px) scale(1)}75%{transform:translateY(-7px)}88%{transform:translateY(3px)}100%{transform:translateY(0) scale(1)}}
+  .book-scene.zoom{animation:none;transform:scale(1.32) translateY(-16px);transition:transform .6s cubic-bezier(.5,.08,.2,1)}
+  .dust-ring{position:absolute;left:50%;bottom:-52px;width:420px;height:64px;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(212,175,55,.42),transparent 62%);opacity:0;z-index:1;pointer-events:none;animation:dustRing 1.3s ease-out .95s both}
+  @keyframes dustRing{0%{opacity:0;transform:translateX(-50%) scaleX(.2)}25%{opacity:1}100%{opacity:0;transform:translateX(-50%) scaleX(1.25)}}
   .book{position:relative;width:min(360px,70vw);height:min(530px,102vw);transform-style:preserve-3d;animation:float 7s ease-in-out infinite}
   @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
   .book-face{position:absolute;inset:0;transform:translateZ(1px);background:linear-gradient(115deg,#16161c 0%,#0a0a0e 45%,#181820 100%);border:1px solid rgba(212,175,55,.55);border-radius:4px 16px 16px 4px;box-shadow:0 46px 100px rgba(0,0,0,.8),inset 0 0 70px rgba(0,0,0,.95);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
@@ -233,12 +237,25 @@
   .engrave-title .l3{display:block;margin-top:20px;font-family:'Inter',sans-serif;font-size:clamp(.5rem,2vw,.64rem);letter-spacing:.5em;text-indent:.5em;color:rgba(212,175,55,.78);font-weight:500}
   .engrave-title .ch{display:inline-block;background:linear-gradient(180deg,#fdf0c2 0%,#efcf74 26%,#c89b2c 52%,#9a7418 70%,#f2dc95 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 4px rgba(0,0,0,.95)) drop-shadow(0 0 3px rgba(212,175,55,.4));opacity:0}
   .engrave-title .ch.on{animation:engrave .55s ease forwards}
-  @keyframes engrave{0%{opacity:0;transform:scale(1.9);filter:drop-shadow(0 0 30px rgba(255,226,150,1)) drop-shadow(0 3px 4px rgba(0,0,0,.95))}55%{opacity:1;transform:scale(1.02);filter:drop-shadow(0 0 14px rgba(255,226,150,.75)) drop-shadow(0 3px 4px rgba(0,0,0,.95))}100%{opacity:1;transform:scale(1);filter:drop-shadow(0 3px 4px rgba(0,0,0,.95)) drop-shadow(0 0 3px rgba(212,175,55,.4))}}
-  .half{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(180deg,#f7e7ab 0%,#e3bc55 28%,#a87f1e 58%,#d9b44c 85%,#f0d98c 100%);box-shadow:inset 0 0 34px rgba(88,60,0,.55);transition:transform 1.05s cubic-bezier(.55,.06,.3,1)}
+  @keyframes engrave{0%{opacity:0;transform:scale(2.1);filter:drop-shadow(0 0 34px rgba(255,228,155,1)) drop-shadow(0 3px 4px rgba(0,0,0,.95))}55%{opacity:1;transform:scale(1.03);filter:drop-shadow(0 0 16px rgba(255,228,155,.8)) drop-shadow(0 3px 4px rgba(0,0,0,.95))}100%{opacity:1;transform:scale(1);filter:drop-shadow(0 3px 4px rgba(0,0,0,.95)) drop-shadow(0 0 3px rgba(212,175,55,.4))}}
+  /* gold light sweep across engraved title */
+  .engrave-title .shine-wrap{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+  .engrave-title .shine{position:absolute;top:-20%;bottom:-20%;width:45%;left:0;background:linear-gradient(105deg,transparent 20%,rgba(255,244,200,.32) 50%,transparent 80%);transform:translateX(-130%)}
+  .engrave-title.shined .shine{animation:shineSweep 1.15s ease .15s forwards}
+  @keyframes shineSweep{to{transform:translateX(330%)}}
+  /* flipping pages */
+  .page{position:absolute;inset:0;--z:2px;background:linear-gradient(90deg,#f6e9cb 0%,#efdfb4 55%,#e6d19d 100%);border:1px solid rgba(212,175,55,.4);box-shadow:0 6px 20px rgba(0,0,0,.45);transform-origin:left center;opacity:0}
+  .page-2{--z:4px}.page-3{--z:6px}
+  .book.open .page{animation:pageFlip .85s cubic-bezier(.5,.1,.32,1) forwards}
+  .book.open .page-2{animation-delay:.16s}
+  .book.open .page-3{animation-delay:.32s}
+  @keyframes pageFlip{0%{opacity:0;transform:rotateY(0deg) translateZ(var(--z))}12%{opacity:1}55%{opacity:1}100%{opacity:0;transform:rotateY(-165deg) translateZ(var(--z))}}
+  /* opening covers with gold interior */
+  .half{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(180deg,#f7e7ab 0%,#e3bc55 28%,#a87f1e 58%,#d9b44c 85%,#f0d98c 100%);box-shadow:inset 0 0 34px rgba(88,60,0,.55);transition:transform 1.15s cubic-bezier(.5,.05,.28,1)}
   .half-l{left:0;transform-origin:right center;border-radius:4px 0 0 4px}
   .half-r{right:0;transform-origin:left center;border-radius:0 16px 16px 0}
-  .book.open .half-l{transform:rotateY(160deg)}
-  .book.open .half-r{transform:rotateY(-160deg)}
+  .book.cover-open .half-l{transform:rotateY(160deg)}
+  .book.cover-open .half-r{transform:rotateY(-160deg)}
   .skip-intro{position:fixed;top:18px;right:22px;z-index:5;background:none;border:1px solid rgba(212,175,55,.35);color:rgba(212,175,55,.85);font-size:.78rem;letter-spacing:.12em;padding:8px 16px;border-radius:999px;cursor:pointer;transition:.25s;font-family:'Inter',sans-serif}
   .skip-intro:hover{background:rgba(212,175,55,.12);border-color:rgba(212,175,55,.7)}
   @media(max-width:600px){.skip-intro{font-size:.7rem;padding:6px 12px}}
@@ -246,18 +263,24 @@
 </head>
 <body>
 
-<!-- INTRO: GOLD BOOK REVEAL -->
+<!-- INTRO: GOLD MAGIC BOOK REVEAL -->
 <div id="intro" role="presentation">
+  <canvas id="goldDust" class="gold-dust"></canvas>
   <div class="burst" id="introBurst"></div>
-  <div class="book-scene">
+  <div class="book-scene" id="bookScene">
+    <div class="dust-ring"></div>
     <div class="book" id="introBook">
       <div class="book-face">
         <div class="engrave-title" id="introTitle">
           <span class="l1" data-text="AUREVIA">AUREVIA</span>
           <span class="l2" data-text="DIGITAL">DIGITAL</span>
           <span class="l3">WEB DESIGN · DIGITAL STUDIO</span>
+          <span class="shine-wrap"><span class="shine"></span></span>
         </div>
       </div>
+      <div class="page page-1"></div>
+      <div class="page page-2"></div>
+      <div class="page page-3"></div>
       <div class="half half-l"></div>
       <div class="half half-r"></div>
     </div>
@@ -623,18 +646,50 @@
     f.action='mailto:hello@aureviadigital.com.au?subject='+encodeURIComponent('Website enquiry from '+name)+'&body='+body;
   });
 
-  // ---------- INTRO: gold book reveal ----------
+  // ---------- INTRO: gold magic book reveal ----------
   (function(){
     var intro=document.getElementById('intro'),book=document.getElementById('introBook'),
-        burst=document.getElementById('introBurst'),skip=document.getElementById('skipIntro');
+        scene=document.getElementById('bookScene'),burst=document.getElementById('introBurst'),
+        skip=document.getElementById('skipIntro'),title=document.getElementById('introTitle'),
+        cv=document.getElementById('goldDust'),ctx=cv&&cv.getContext('2d');
+    var raf=null;
     function finish(){
       document.documentElement.style.overflow='';
       intro.classList.add('hide');
-      setTimeout(function(){intro.classList.add('gone');},750);
+      if(raf)cancelAnimationFrame(raf);
+      setTimeout(function(){intro.classList.add('gone');},800);
     }
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){intro.classList.add('gone');return;}
     document.documentElement.style.overflow='hidden';
-    // split title into letters
+
+    // --- gold dust canvas (ambient float + burst) ---
+    var W,H,parts=[],bursts=[];
+    function size(){W=cv.width=window.innerWidth*devicePixelRatio;H=cv.height=window.innerHeight*devicePixelRatio;cv.style.width=window.innerWidth+'px';cv.style.height=window.innerHeight+'px';}
+    size();window.addEventListener('resize',size);
+    for(var i=0;i<36;i++)parts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.5,vy:-(Math.random()*.35+.15),r:(Math.random()*1.1+.4)*devicePixelRatio,a:Math.random()*.5+.2,t:Math.random()*6});
+    function frame(){
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<parts.length;i++){var p=parts[i];
+        p.x+=p.vx;p.y+=p.vy;p.t+=.04;
+        if(p.y<-20||p.x<-20||p.x>W+20){p.x=Math.random()*W;p.y=H+10;}
+        ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);
+        ctx.fillStyle='hsla(46,92%,'+(58+Math.random()*18)+'%,'+p.a*(.5+.5*Math.sin(p.t)).toFixed(3)+')';
+        ctx.fill();
+      }
+      for(var j=bursts.length-1;j>=0;j--){var b=bursts[j];
+        b.x+=b.vx;b.y+=b.vy;b.vy+=.14;b.vx*=.97;b.age++;
+        if(b.age>100)bursts.splice(j,1);
+        else{ctx.beginPath();ctx.arc(b.x,b.y,b.r*(1-b.age/110),0,7);
+          ctx.fillStyle='hsla('+(44+Math.random()*8)+',95%,70%,'+(b.a*(1-b.age/100)).toFixed(3)+')';ctx.fill();}
+      }
+      raf=requestAnimationFrame(frame);
+    }
+    function dustBurst(){
+      for(var i=0;i<150;i++)bursts.push({x:W/2+(Math.random()-.5)*W*.12,y:H*.42+(Math.random()-.5)*H*.3,vx:(Math.random()-.5)*13,vy:(Math.random()-.35)*9,r:(Math.random()*2.2+.6)*devicePixelRatio,a:Math.random()*.7+.3,age:0});
+    }
+    frame();
+
+    // --- split title into letters ---
     var lines=document.querySelectorAll('#intro .engrave-title .l1,#intro .engrave-title .l2');
     var n=0;
     lines.forEach(function(line){
@@ -646,12 +701,15 @@
         line.appendChild(s);
       });
     });
-    var engraveMs=n*115;
+    var E=n*115;
     setTimeout(function(){lines.forEach(function(l){l.querySelectorAll('.ch').forEach(function(c){c.classList.add('on');});});},150);
-    setTimeout(function(){document.getElementById('introTitle').classList.add('fade');},engraveMs+1000);
-    setTimeout(function(){book.classList.add('open');},engraveMs+1350);
-    setTimeout(function(){burst.classList.add('on');},engraveMs+2200);
-    setTimeout(finish,engraveMs+2450);
+    setTimeout(function(){title.classList.add('shined');},E+650);   // gold light sweep
+    setTimeout(function(){title.classList.add('fade');},E+950);     // title dissolves
+    setTimeout(function(){book.classList.add('open');},E+1200);     // pages flip one by one
+    setTimeout(function(){book.classList.add('cover-open');},E+1560);// covers open, gold interior
+    setTimeout(function(){dustBurst();},E+2400);                    // gold particle explosion
+    setTimeout(function(){burst.classList.add('on');scene.classList.add('zoom');},E+2500); // light bloom + camera push-in
+    setTimeout(finish,E+2700);
     skip.addEventListener('click',finish);
   })();
 </script>
