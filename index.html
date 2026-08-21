@@ -36,14 +36,11 @@
   img{max-width:100%;display:block}
   .container{max-width:1120px;margin:0 auto;padding:0 24px}
   .mono{font-family:var(--mono)}
-  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:220% auto;animation:gradShift 7s ease-in-out infinite}
-  @keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-  /* film grain texture — kills the flat "AI" look */
-  .noise{position:fixed;inset:-50%;width:200%;height:200%;z-index:9999;pointer-events:none;opacity:.05;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    animation:grain 9s steps(10) infinite}
-  @keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-2%,2%)}40%{transform:translate(2%,-1%)}60%{transform:translate(-1%,-2%)}80%{transform:translate(1%,2%)}}
+  /* film grain texture — static, no motion (animated version caused flicker) */
+  .noise{position:fixed;inset:0;width:100%;height:100%;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
   /* scroll progress */
   .scroll-progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--grad);z-index:1200;box-shadow:0 0 12px rgba(212,175,55,.6)}
@@ -87,10 +84,8 @@
   /* ---------- HERO ---------- */
   header{position:relative;padding:196px 0 110px;overflow:hidden}
   .blob{position:absolute;border-radius:50%;filter:blur(110px);opacity:.28;pointer-events:none;will-change:transform}
-  .blob-1{width:560px;height:560px;background:#B8860B;top:-200px;right:-140px;animation:drift1 14s ease-in-out infinite alternate}
-  .blob-2{width:460px;height:460px;background:#6B5310;bottom:-240px;left:-160px;animation:drift2 18s ease-in-out infinite alternate}
-  @keyframes drift1{to{transform:translate(-60px,40px) scale(1.08)}}
-  @keyframes drift2{to{transform:translate(50px,-30px) scale(1.05)}}
+  .blob-1{width:560px;height:560px;background:#B8860B;top:-200px;right:-140px}
+  .blob-2{width:460px;height:460px;background:#6B5310;bottom:-240px;left:-160px}
   .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
   .pill{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--border);border-radius:999px;padding:8px 16px;font-size:.72rem;color:var(--muted);margin-bottom:28px;letter-spacing:.12em;text-transform:uppercase;font-family:var(--mono)}
   .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:pulse 2.2s ease-in-out infinite}
@@ -125,19 +120,14 @@
   .mock-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.045)}
   .mock-row:last-child{border-bottom:none}
   .mock-row i{width:10px;height:10px;border-radius:2px;background:var(--gold);opacity:.5;flex-shrink:0}
-  .mock-row span{height:9px;flex:1;border-radius:2px;background:rgba(255,255,255,.07);position:relative;overflow:hidden}
-  .mock-row span::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(233,206,122,.3),transparent);transform:translateX(-100%);animation:shimmer 3s ease-in-out infinite}
-  .mock-row:nth-child(2) span::after{animation-delay:.5s}
-  .mock-row:nth-child(3) span::after{animation-delay:1s}
-  @keyframes shimmer{55%,100%{transform:translateX(100%)}}
+  .mock-row span{height:9px;flex:1;border-radius:2px;background:rgba(255,255,255,.07)}
   .float-badge{position:absolute;background:rgba(14,14,18,.94);border:1px solid var(--border);border-radius:6px;padding:13px 17px;font-size:.78rem;display:flex;align-items:center;gap:11px;box-shadow:0 18px 44px rgba(0,0,0,.55);backdrop-filter:blur(8px);z-index:3}
   .float-badge .fb-icon{width:34px;height:34px;border-radius:6px;background:var(--grad);display:grid;place-items:center;color:#0B0B0E;flex-shrink:0}
   .float-badge .fb-icon svg{width:17px;height:17px}
   .float-badge b{display:block;font-size:.8rem;color:var(--text)}
   .float-badge span{color:var(--muted);font-size:.72rem}
-  .fb-1{top:30%;left:-30px;animation:float 5s ease-in-out infinite}
-  .fb-2{bottom:22%;right:-22px;animation:float 6.5s ease-in-out infinite reverse}
-  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+  .fb-1{top:30%;left:-30px}
+  .fb-2{bottom:22%;right:-22px}
   .toast{position:absolute;bottom:-16px;left:-18px;display:flex;align-items:center;gap:11px;background:rgba(16,16,21,.97);border:1px solid rgba(62,207,142,.35);border-radius:6px;padding:12px 16px;box-shadow:0 18px 44px rgba(0,0,0,.55);opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease);z-index:4}
   .toast.show{opacity:1;transform:translateY(0)}
   .toast .fb-icon{width:30px;height:30px;border-radius:6px;background:rgba(62,207,142,.16);border:1px solid rgba(62,207,142,.4);display:grid;place-items:center;color:var(--green);flex-shrink:0}
