@@ -101,7 +101,7 @@
   .stat span{color:var(--muted);font-size:.78rem;letter-spacing:.02em;font-family:var(--mono)}
 
   /* hero mock — a real mini site, not a fake browser */
-  .mock-wrap{position:relative;perspective:1200px}
+  .mock-wrap{position:relative}
   .mock{position:relative;border-radius:6px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));box-shadow:0 44px 100px rgba(0,0,0,.6);transition:transform .35s var(--ease);will-change:transform}
   .mock-top{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border)}
   .mock-url{font-size:.72rem;color:var(--muted);letter-spacing:.05em}
@@ -683,17 +683,9 @@
     io.observe(el);
   });
 
-  /* hero mock intro line draw + tilt (fine pointers only) */
-  const mock=$('#mock'),hero=$('#top');
+  /* hero mock intro line draw (tilt removed — mouse-follow motion read as flicker) */
+  const mock=$('#mock');
   if(mock){setTimeout(()=>mock.classList.add('in'),reduced?0:400)}
-  if(mock&&hero&&!reduced&&matchMedia('(pointer:fine)').matches){
-    hero.addEventListener('mousemove',e=>{
-      const r=hero.getBoundingClientRect();
-      const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
-      mock.style.transform='perspective(1000px) rotateY('+(x*6).toFixed(2)+'deg) rotateX('+(-y*6).toFixed(2)+'deg)';
-    });
-    hero.addEventListener('mouseleave',()=>{mock.style.transform=''});
-  }
 
   /* enquiry toast removed (periodic popup caused perceived flicker) */
 
