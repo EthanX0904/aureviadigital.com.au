@@ -132,7 +132,7 @@
 
   /* ---------- MARQUEE ---------- */
   .marquee{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);padding:19px 0;position:relative}
-  .marquee-track{display:flex;gap:52px;width:max-content;animation:marq 32s linear infinite}
+  .marquee-track{display:flex;gap:52px;width:max-content;animation:marq 60s linear infinite}
   .marquee:hover .marquee-track{animation-play-state:paused}
   .marquee span{font-family:var(--mono);font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);white-space:nowrap;display:inline-flex;align-items:center;gap:52px}
   .marquee span i{font-style:normal;color:var(--gold);font-size:.6rem}
@@ -666,22 +666,7 @@
   addEventListener('scroll',revealCheck,{passive:true});
   revealCheck();
 
-  /* stats count-up */
-  $$('.stat b[data-count]').forEach(el=>{
-    const target=+el.dataset.count, suf=el.dataset.suffix||'';
-    if(reduced){el.textContent=target+suf;return}
-    const io=new IntersectionObserver(es=>{
-      if(!es[0].isIntersecting)return;
-      io.disconnect();
-      const t0=performance.now();
-      (function tick(now){
-        const p=Math.min(1,(now-t0)/1300);
-        el.textContent=Math.round(target*(1-Math.pow(1-p,3)))+suf;
-        if(p<1)requestAnimationFrame(tick);
-      })(t0);
-    },{threshold:.6});
-    io.observe(el);
-  });
+  /* stats count-up removed — number-width changes during animation made the stat boxes jitter on page load */
 
   /* hero mock intro line draw (tilt removed — mouse-follow motion read as flicker) */
   const mock=$('#mock');
