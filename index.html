@@ -141,9 +141,9 @@
 
   /* ---------- MARQUEE ---------- */
   .marquee{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);padding:19px 0;position:relative}
-  .marquee-track{display:flex;gap:52px;width:max-content;animation:marq 60s linear infinite}
+  .marquee-track{display:flex;width:max-content;animation:marq 80s linear infinite}
   .marquee:hover .marquee-track{animation-play-state:paused}
-  .marquee span{font-family:var(--mono);font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);white-space:nowrap;display:inline-flex;align-items:center;gap:52px}
+  .marquee span{font-family:var(--mono);font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);white-space:nowrap;display:inline-flex;align-items:center;gap:52px;padding-right:52px}
   .marquee span i{font-style:normal;color:var(--gold);font-size:.6rem}
   @keyframes marq{to{transform:translateX(-50%)}}
 
@@ -388,6 +388,8 @@
 <!-- MARQUEE -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
+    <span>Web Design <i>✦</i> Web Development <i>✦</i> SEO <i>✦</i> Branding <i>✦</i> E-Commerce <i>✦</i> Care Plans <i>✦</i></span>
+    <span>Web Design <i>✦</i> Web Development <i>✦</i> SEO <i>✦</i> Branding <i>✦</i> E-Commerce <i>✦</i> Care Plans <i>✦</i></span>
     <span>Web Design <i>✦</i> Web Development <i>✦</i> SEO <i>✦</i> Branding <i>✦</i> E-Commerce <i>✦</i> Care Plans <i>✦</i></span>
     <span>Web Design <i>✦</i> Web Development <i>✦</i> SEO <i>✦</i> Branding <i>✦</i> E-Commerce <i>✦</i> Care Plans <i>✦</i></span>
   </div>
