@@ -81,6 +81,15 @@
   .mobile-menu a{padding:11px 4px;color:var(--muted);border-bottom:1px solid var(--border-soft);font-size:.95rem;font-family:var(--mono);letter-spacing:.03em}
   .mobile-menu a:last-child{border-bottom:none}
 
+  /* ---------- HERO ENTRANCE (one-time, no loop — safe from jitter) ---------- */
+  .hero-grid .pill{animation:heroIn .7s var(--ease) .05s both}
+  .hero-grid h1{animation:heroIn .8s var(--ease) .15s both}
+  .hero-grid p.sub{animation:heroIn .8s var(--ease) .28s both}
+  .hero-cta{animation:heroIn .8s var(--ease) .4s both}
+  .stats{animation:heroIn .85s var(--ease) .52s both}
+  .mock-wrap{animation:heroIn .9s var(--ease) .3s both}
+  @keyframes heroIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
   /* ---------- HERO ---------- */
   header{position:relative;padding:196px 0 110px;overflow:hidden}
   .blob{position:absolute;border-radius:50%;filter:blur(110px);opacity:.28;pointer-events:none;will-change:transform}
@@ -142,6 +151,9 @@
   section{padding:104px 0}
   .sec-head{text-align:center;max-width:680px;margin:0 auto 60px}
   .sec-head .kicker{color:var(--gold);font-weight:500;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;margin-bottom:16px;font-family:var(--mono)}
+  .sec-head .kicker::after{content:'';display:block;width:0;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:12px auto 0;transition:width .9s var(--ease) .25s}
+  .sec-head.in .kicker::after{width:56px}
+  .sec-head.left .kicker::after{margin:12px 0 0}
   .sec-head h2{font-size:clamp(2rem,3.6vw,2.75rem);margin-bottom:18px}
   .sec-head h2 em{font-style:italic;color:var(--gold-light)}
   .sec-head p{color:var(--muted);font-size:.97rem}
@@ -665,6 +677,20 @@
   const revealCheck=()=>{const vh=innerHeight*.94;$$('.reveal:not(.in)').forEach(el=>{if(el.getBoundingClientRect().top<vh)el.classList.add('in')})};
   addEventListener('scroll',revealCheck,{passive:true});
   revealCheck();
+
+  /* subtle hero blob parallax (scroll-linked, smooth, transform-only) */
+  const blobs=$$('.blob');
+  if(blobs.length&&!reduced){
+    let tick2=false;
+    addEventListener('scroll',()=>{
+      if(tick2)return;tick2=true;
+      requestAnimationFrame(()=>{
+        const y=scrollY;
+        blobs.forEach((b,i)=>{b.style.transform='translateY('+((y*.12)*(i===0?-1:1)).toFixed(1)+'px)'});
+        tick2=false;
+      });
+    },{passive:true});
+  }
 
   /* stats count-up removed — number-width changes during animation made the stat boxes jitter on page load */
 
